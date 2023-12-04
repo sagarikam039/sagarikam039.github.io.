@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+    }
+
+    nav {
+      background-color: #666;
+      padding: 0.5em;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5em 1em;
+    }
+
+    section {
+      margin: 1em;
+      padding: 1em;
+      background-color: white;
+    }
+
+    .menu-item {
+      border: 1px solid #ddd;
+      padding: 1em;
+      margin: 1em;
+      background-color: #fff;
+    }
+
+    .filter {
+      margin: 0.5em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Restaurant Name</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Menu</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section>
+    <div class="filter">
+      <label for="search">Search:</label>
+      <input type="text" id="search" name="search">
+    </div>
+
+    <div class="filter">
+      <label for="sort">Sort by:</label>
+      <select id="sort" name="sort">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+      </select>
+    </div>
+
+    <div id="menu" class="menu-item">
+      <!-- Menu items will be dynamically added here using JavaScript -->
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Restaurant Name. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Example data (replace with actual data)
+    const menuData = [
+      { name: 'Dish 1', description: 'Description of Dish 1', price: 10.99, image: 'dish1.jpg', video: 'dish1.mp4' },
+      { name: 'Dish 2', description: 'Description of Dish 2', price: 15.99, image: 'dish2.jpg', video: 'dish2.mp4' },
+      // Add more items as needed
+    ];
+
+    // Function to render menu items
+    function renderMenu() {
+      const menuContainer = document.getElementById('menu');
+      menuContainer.innerHTML = '';
+
+      menuData.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('menu-item');
+
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.name;
+        menuItem.appendChild(img);
+
+        const title = document.createElement('h2');
+        title.textContent = item.name;
+        menuItem.appendChild(title);
+
+        const description = document.createElement('p');
+        description.textContent = item.description;
+        menuItem.appendChild(description);
+
+        const price = document.createElement('p');
+        price.textContent = `$${item.price.toFixed(2)}`;
+        menuItem.appendChild(price);
+
+        const video = document.createElement('video');
+        video.src = item.video;
+        video.controls = true;
+        menuItem.appendChild(video);
+
+        menuContainer.appendChild(menuItem);
+      });
+    }
+
+    // Initial rendering
+    renderMenu();
+  </script>
+
+</body>
+
+</html>
